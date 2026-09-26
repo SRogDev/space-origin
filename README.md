@@ -1,4 +1,4 @@
-# Space Origins
+# SpaceOrigins
 
 **Open-source single-player space-colony / civilization simulation.** Year 2280.
 You are a space-colonization corporation. The fantasy: **"Design humanity from scratch."**

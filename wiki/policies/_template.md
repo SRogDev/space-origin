@@ -11,6 +11,11 @@ effects:
 tradeoffs: "Reduces funds available for military and research; shifts values toward collectivism."
 value_shift:                       # pushes on the axes (see ../values/)
   individualism_collectivism: +0.2
+modifiers:                        # OPTIONAL machine-readable map, applied ONCE when enacted.
+  # Convention: dotted sim stat -> ADDITIVE delta (new = old + delta).
+  #   {economy.treasury: -50000} spends 50k from the treasury at enactment.
+  #   Result is clamped to the stat's bounds. Whitelisted paths in api/content.py.
+  # economy.treasury: -50000
 ---
 
 # Universal Basic Dividend

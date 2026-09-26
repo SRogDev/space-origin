@@ -1,4 +1,4 @@
-# Space Origins — Build Plan
+# SpaceOrigins — Build Plan
 
 > Spec: `docs/product-context.md`. Stack: FastAPI/Python game core + Supabase + Three.js client.
 > Backend is the real game. Three.js visualizes; Godot comes later on the same core.
@@ -15,20 +15,25 @@
 
 ## Phase 0 — Content system + world model
 
-- [ ] `wiki/` schemas finalized (technologies, policies, events, values, places, lore)
-- [ ] Content validator (CI): schema, unique ids, unbroken `[[links]]`
-- [ ] Content API: `GET /api/content/{type}/{id}` serves wiki as JSON
-- [ ] World state model (Pydantic): serializable, save/load
+- [x] `wiki/` schemas finalized (technologies, policies, events, values, places, lore) — `_template.md` per folder + machine-readable maps (`stat_modifiers`/`modifiers`/`state_changes`); 1 example file per folder
+- [x] Content validator: `scripts/validate_wiki.py` — schema, unique ids, unbroken `[[links]]` (exit 0; asserted by `api/tests/test_wiki.py`)
+- [x] Content API: `GET /api/content/{type}` + `GET /api/content/{type}/{id}` serves wiki as JSON
+- [x] World state model (Pydantic v2): serializable, save/load to `api/saves/`
 
 ## Phase 1 — Simulation core (deterministic, UI-independent)
 
-- [ ] Colony creation: resources, initial population, value axes
-- [ ] Tick engine: `advance_time(years)` — population, economy, resources
-- [ ] Policies: apply → systemic consequences
-- [ ] Technology research: deep tree from `wiki/technologies/`
-- [ ] Events: triggered from simulation state (deterministic predicates)
-- [ ] History log accumulation
-- [ ] Tests: colony → +10 years → assert plausible deltas; 100/500/1000-year soak runs
+- [x] Colony creation: resources, initial population, value axes (`POST /api/games`)
+- [x] Tick engine: `advance_time(years)` — population, economy, resources; seeded RNG, deterministic fingerprint
+- [x] Policies: apply → systemic consequences + value-axis shifts
+- [x] Technology research: from `wiki/technologies/`, prereq + cost gating
+- [x] Events: deterministic state predicates (safe parser, no `eval()`), cooldowns
+- [x] History log accumulation (per-tick entries)
+- [x] Tests: 51 tests — colony → +10y plausible deltas, determinism, 100y soak (no NaN/explosions), event firing; RED→GREEN evidenced
+
+> CI note: no `.github/workflows/` in this repo — the stored GitHub token lacks the
+> `workflows` scope, so API pushes cannot write workflow files. Add CI from a
+> full-scope token or a local `git push` when available. Intended CI: ruff +
+> pytest + `validate_wiki.py` + `npm run build`.
 
 ## Phase 2 — AI content layer (LangGraph)
 
@@ -49,4 +54,4 @@ time advances → civilization changes → save/continue. One colony, limited re
 
 ## Open questions (for Roger)
 
-- [ ] Product name spelling: **Space Origins** (doc) vs **space origin** (repo)?
+- [x] Product name spelling — resolved 2026-09-26: **SpaceOrigins**, repo `SRogDev/spaceorigins`

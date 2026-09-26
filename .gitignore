@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+api/.venv/
+
+# Build outputs
+client/dist/
+__pycache__/
+
+# Local saves (gitignored by design; saves/ ships only .gitkeep)
+api/saves/*.json
+
+# Env / OS
+.env
+.DS_Store

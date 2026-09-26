@@ -1,0 +1,4 @@
+.venv/
+saves/*.json
+!saves/.gitkeep
+__pycache__/

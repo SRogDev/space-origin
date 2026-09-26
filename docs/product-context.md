@@ -1,10 +1,10 @@
-# Space Origins — Product Context
+# SpaceOrigins — Product Context
 
 > Extracted from Roger's product conversations (2026-09-26). Canonical spec for builders.
 
 ## Identity
 
-**Space Origins** is an open-source **single-player** space-colony / civilization
+**SpaceOrigins** is an open-source **single-player** space-colony / civilization
 simulation game. Setting: **Year 2280.**
 
 The player controls a space-colonization corporation establishing human
@@ -89,7 +89,7 @@ Environment, Events, History. Save/load supported.
 ## Architecture: backend-first
 
 ```
-              SPACE ORIGINS
+              SPACEORIGINS
                     │
               REAL GAME CORE (FastAPI/Python)
                     │

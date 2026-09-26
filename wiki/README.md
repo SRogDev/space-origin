@@ -1,4 +1,4 @@
-# Wiki — the game design data of Space Origins
+# Wiki — the game design data of SpaceOrigins
 
 This directory is the **game design data** the code reads. Technologies, policies,
 events, value axes, places, and lore live here as Markdown files with structured

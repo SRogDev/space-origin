@@ -13,6 +13,12 @@ effects:                          # systems touched (computed by sim, not prose)
   economy: "+energy production, -energy costs"
   environment: "-pollution if replacing fission"
   unlocks_buildings: ["fusion-reactor"]
+stat_modifiers:                   # OPTIONAL machine-readable map, applied by the sim on research.
+  # Convention: dotted sim stat -> FRACTIONAL MULTIPLICATIVE delta.
+  #   {economy.energy_production: 0.2} means new = old * (1 + 0.2)  (+20%).
+  #   Negative values shrink the stat. Result is clamped to the stat's bounds.
+  #   Valid dotted paths are whitelisted in api/content.py (derived from api/models.py).
+  # economy.energy_production: 0.5
 ---
 
 # Fusion Power
