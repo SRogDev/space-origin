@@ -1,12 +1,13 @@
 ---
-# Template — copy this file to create a new lore entry
-id: my-event
-title: My Event
-era: "Year 0"                  # in-universe date
-related:                       # cross-references
-  - "[[civilizations/my-civilization]]"
+# Template — copy this file to add a lore entry
+id: the-departure
+title: The Departure
+era: "2280 — Year Zero"
+related:
+  - "[[places/kepler-verge]]"
 ---
 
-# My Event
+# The Departure
 
-The story. Keep it tight — lore serves the game, not the other way around.
+Background history and flavor. Keep it tight — lore serves the game.
+The AI will expand on these seeds when narrating a playthrough.

@@ -1,15 +1,22 @@
 ---
-# Template — copy this file to create a new technology
-id: my-tech
-name: My Technology
-tier: 1                        # 1-5
-cost: 100                      # research points
-prerequisites: []              # e.g. ["basic-propulsion"]
-unlocks:                       # what this enables
-  - "[[talent-trees/some-tree]]"
-civilization: null             # null = universal, or civilization id
+# Template — copy this file to add a technology
+id: fusion-power
+name: Fusion Power
+branch: energy                    # energy | biology | computing | materials | propulsion | society | ...
+tier: 2                           # 1-5, depth in the tree
+cost: 500                         # research points
+prerequisites: ["advanced-plasma"] # technology ids
+unlocks:                          # what becomes available
+  - "[[technologies/antimatter-theory]]"
+  - "[[policies/energy-abundance-act]]"
+effects:                          # systems touched (computed by sim, not prose)
+  economy: "+energy production, -energy costs"
+  environment: "-pollution if replacing fission"
+  unlocks_buildings: ["fusion-reactor"]
 ---
 
-# My Technology
+# Fusion Power
 
-What it is and what it changes in the world. Flavor + mechanics.
+What it is, flavor, and the strategic questions it raises. Remember the fantasy:
+technology should change what *kind* of humanity the player can build, not just
+add +10% somewhere.

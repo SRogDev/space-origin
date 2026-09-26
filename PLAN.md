@@ -1,48 +1,52 @@
-# space origin — Build Plan
+# Space Origins — Build Plan
 
-> Content-first: the wiki is the game design document that the code reads.
+> Spec: `docs/product-context.md`. Stack: FastAPI/Python game core + Supabase + Three.js client.
+> Backend is the real game. Three.js visualizes; Godot comes later on the same core.
 
 ## Confirmed decisions (2026-09-26)
 
-- **Backend**: FastAPI + Supabase (real API, no mocks)
-- **Content**: `wiki/` is a huge list of structured `.md` files — source of truth, **no DB for content for now**
+- **Backend**: FastAPI + Supabase (Postgres for saves/world state)
+- **AI**: LangGraph + OpenRouter — interprets world state, generates content; NEVER mutates simulation state
+- **Content**: `wiki/` structured `.md` files are the game design data (tech, policies, events, values, places, lore) — no content DB for now
+- **Client**: pure Three.js + TypeScript (Vite) — HUD/sci-fi grand-strategy presentation
 - **Language**: English (for now)
-- **License**: open source, **not MIT** (TBD which)
-- **First playable slices**: 1) star map viewer, 2) talent tree viewer, 3) battle viewer
-- **Features**: ⏸️ waiting for Roger's conversations — features to be extracted from them
+- **License**: AGPL-3.0
+- **Scope**: single-player, no blockchain/P2E, no AAA graphics
 
-## Proposed stack
+## Phase 0 — Content system + world model
 
-- **Frontend**: pure Three.js + TypeScript, Vite, Tailwind for HUD overlays
-- **Backend**: FastAPI + Postgres (Supabase or self-hosted) — real API, no mocks
-- **Content pipeline**: `wiki/*.md` with YAML frontmatter → validated → served by API
-
-## Phase 0 — Content system (first)
-
-- [ ] Finalize frontmatter schemas (see `wiki/` templates)
-- [ ] Content validator (CI checks every `.md` for schema + broken links)
+- [ ] `wiki/` schemas finalized (technologies, policies, events, values, places, lore)
+- [ ] Content validator (CI): schema, unique ids, unbroken `[[links]]`
 - [ ] Content API: `GET /api/content/{type}/{id}` serves wiki as JSON
-- [ ] **Content editor UI**: add/modify talent trees, civilizations, etc. from the browser — no code touched
+- [ ] World state model (Pydantic): serializable, save/load
 
-## Phase 1 — Wiki authoring
+## Phase 1 — Simulation core (deterministic, UI-independent)
 
-- [ ] Dozens of `.md` files: civilizations, technologies, talent trees, places, lore
-- [ ] Cross-links (tech X belongs to civilization Y, unlocks talent Z)
+- [ ] Colony creation: resources, initial population, value axes
+- [ ] Tick engine: `advance_time(years)` — population, economy, resources
+- [ ] Policies: apply → systemic consequences
+- [ ] Technology research: deep tree from `wiki/technologies/`
+- [ ] Events: triggered from simulation state (deterministic predicates)
+- [ ] History log accumulation
+- [ ] Tests: colony → +10 years → assert plausible deltas; 100/500/1000-year soak runs
 
-## Phase 2 — Three.js prototype slices
+## Phase 2 — AI content layer (LangGraph)
 
-- [ ] Star map: navigable 3D map of places from `wiki/places/`
-- [ ] Talent tree viewer: renders `wiki/talent-trees/` as interactive 3D/2D graphs
-- [ ] Battle viewer: visualizes a battle between fleets (ships from civilizations + technologies), driven by wiki content
+- [ ] State → narrative: news, reports, event descriptions
+- [ ] Player Q&A over world state ("why is unemployment rising?")
+- [ ] Advisory: consequence previews (information only)
 
-## Phase 3 — Gameplay (only after content is rich enough)
+## Phase 3 — Three.js client slices
 
-- [ ] To be defined from the conversations Roger will send
+- [ ] Star map viewer (places from `wiki/places/`)
+- [ ] Talent/tech tree viewer (interactive graph from `wiki/technologies/`)
+- [ ] Battle viewer (military conflicts resolved by the simulation, visualized)
+
+## Phase 4 — MVP loop
+
+Start colony → design society → manage → tech → evolve → events → respond →
+time advances → civilization changes → save/continue. One colony, limited region.
 
 ## Open questions (for Roger)
 
-- [ ] Backend: FastAPI + Supabase, or something else?
-- [ ] Content storage: markdown files in repo (git-versioned) vs DB with editor UI — or both (files as source of truth, synced to DB)?
-- [ ] Language of game content: English-first? Spanish?
-- [ ] License: open source or proprietary?
-- [ ] What's the first playable slice — explore map? unlock tech? something else?
+- [ ] Product name spelling: **Space Origins** (doc) vs **space origin** (repo)?

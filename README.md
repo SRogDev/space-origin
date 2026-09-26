@@ -1,26 +1,35 @@
-# space origin
+# Space Origins
 
-**Content-first space strategy prototype.** Pure Three.js — no game engine. Real backend.
+**Open-source single-player space-colony / civilization simulation.** Year 2280.
+You are a space-colonization corporation. The fantasy: **"Design humanity from scratch."**
 
-The universe is authored as content: civilizations, technologies, talent trees, places, and lore live as Markdown files in [`wiki/`](wiki/). Gameplay is built *on top of* that content, not the other way around.
+Choose your civilization's principles — liberty vs authority, ecology vs industry,
+pacifism vs militarism — then watch population, economy, politics, technology and
+culture evolve from those choices. **"What did my civilization become?"**
 
-## Architecture
+## Architecture: backend-first
 
-- **Frontend**: pure Three.js (no Unity/Godot/Unreal) — HUD/sci-fi aesthetic
-- **Backend**: real API serving game content + state (no mocks)
-- **Content**: `wiki/` — dozens of `.md` files with structured frontmatter; a UI endpoint lets you add/modify content (talent trees, civilizations, …) without touching code. Markdown is the source of truth (no content DB for now).
-- **First slices**: star map viewer, talent tree viewer, battle viewer
+The **FastAPI/Python game core is the real game** — deterministic simulation,
+serializable world state, save/load, testable without any UI. The AI
+(LangGraph) **interprets** world state into events, news, and narratives —
+it never decides the simulation's facts.
 
-## The rule
+**Three.js** is the first client (map, panels, tech trees, HUD) — not disposable,
+but never the source of truth. Godot can become a second client later on the
+same core.
 
-> No gameplay until there is enough world to play in.
+Content (technologies, policies, events, values, places, lore) is authored as
+structured Markdown in [`wiki/`](wiki/) — the game design data the code reads.
 
-First the civilizations, technologies, talent trees, and places. Then the systems that bring them to life.
+## Boundaries
+
+Single-player. No blockchain/P2E. No AAA graphics — systemic depth over visuals.
 
 ## Status
 
-Early scaffold — see [PLAN.md](PLAN.md). Wiki index: [wiki/README.md](wiki/README.md).
+Early build — see [PLAN.md](PLAN.md), spec in [docs/product-context.md](docs/product-context.md),
+content index in [wiki/README.md](wiki/README.md).
 
 ## License
 
-TBD (confirm: open source or proprietary?)
+AGPL-3.0 — see [LICENSE](LICENSE).

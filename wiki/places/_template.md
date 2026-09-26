@@ -1,13 +1,14 @@
 ---
-# Template — copy this file to create a new place
-id: my-place
-name: My Place
-type: system                   # system | planet | station | anomaly
-coordinates: [0, 0, 0]         # 3D map position
-faction: null                  # controlling civilization id, or null
-resources: ["metal", "gas"]
+# Template — copy this file to add a place
+id: kepler-verge
+name: Kepler Verge
+type: region                      # region | system | colony-site | station | anomaly
+coordinates: [120, -40, 300]       # 3D map position
+resources: ["metals", "water-ice"]
+hazards: ["radiation-storms"]
 ---
 
-# My Place
+# Kepler Verge
 
-Description players would read in the codex.
+Description for the codex and map. What makes this place strategically
+interesting — not just pretty?
