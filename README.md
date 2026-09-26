@@ -8,7 +8,8 @@ The universe is authored as content: civilizations, technologies, talent trees, 
 
 - **Frontend**: pure Three.js (no Unity/Godot/Unreal) — HUD/sci-fi aesthetic
 - **Backend**: real API serving game content + state (no mocks)
-- **Content**: `wiki/` — dozens of `.md` files with structured frontmatter; a UI endpoint lets you add/modify content (talent trees, civilizations, …) without touching code
+- **Content**: `wiki/` — dozens of `.md` files with structured frontmatter; a UI endpoint lets you add/modify content (talent trees, civilizations, …) without touching code. Markdown is the source of truth (no content DB for now).
+- **First slices**: star map viewer, talent tree viewer, battle viewer
 
 ## The rule
 

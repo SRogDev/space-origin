@@ -2,7 +2,16 @@
 
 > Content-first: the wiki is the game design document that the code reads.
 
-## Proposed stack (to confirm)
+## Confirmed decisions (2026-09-26)
+
+- **Backend**: FastAPI + Supabase (real API, no mocks)
+- **Content**: `wiki/` is a huge list of structured `.md` files — source of truth, **no DB for content for now**
+- **Language**: English (for now)
+- **License**: open source, **not MIT** (TBD which)
+- **First playable slices**: 1) star map viewer, 2) talent tree viewer, 3) battle viewer
+- **Features**: ⏸️ waiting for Roger's conversations — features to be extracted from them
+
+## Proposed stack
 
 - **Frontend**: pure Three.js + TypeScript, Vite, Tailwind for HUD overlays
 - **Backend**: FastAPI + Postgres (Supabase or self-hosted) — real API, no mocks
@@ -24,7 +33,7 @@
 
 - [ ] Star map: navigable 3D map of places from `wiki/places/`
 - [ ] Talent tree viewer: renders `wiki/talent-trees/` as interactive 3D/2D graphs
-- [ ] Civilization codex: in-game encyclopedia from `wiki/`
+- [ ] Battle viewer: visualizes a battle between fleets (ships from civilizations + technologies), driven by wiki content
 
 ## Phase 3 — Gameplay (only after content is rich enough)
 
