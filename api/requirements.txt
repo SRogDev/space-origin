@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-pydantic>=2
-PyYAML
-httpx
-langgraph
-pytest
